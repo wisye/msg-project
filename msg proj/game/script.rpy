@@ -62,7 +62,7 @@ init python:
     import random
 
     def play_jump():
-        sound = random.choice(["jump1.ogg", "jump2.ogg", "jump3.ogg"])
+        sound = random.choice(["jump1.ogg", "jump2.ogg", "jump3.ogg", "jump4.ogg"])
         renpy.sound.play(sound)
 
     def random_jumpscare():
