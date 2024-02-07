@@ -7,8 +7,16 @@ define mc = Character('MC', color="#ffffff")
 image mc normal = "default mc 1.png"
 image mc panic = "panic mc 1.png"
 image mc amazed = "amazed mc 1.png"
+image mc scared = "scared mc 1.png"
+image mc sleep = "think mc 2.png"
+image mc think = "think mc 1.png"
+image mc smile = "smile mc 1.png"
+image mc happy = "happy mc 1.png"
+image mc veryscared = "scared mc 3.png"
+image mc verypanic = "panic mc 3.png"
 transform pos:
     xalign 0.5
+    yalign 0.01
     zoom 0.8
 
 define n = Character('') # This is a placeholder for the narrator.
@@ -72,8 +80,7 @@ init python:
 label start:
 
     scene bg room
-
-    show mc normal at pos
+    show mc sleep at pos
 
     n "A gust of fresh wind flew by as birds started to chirp."
     n "It was the beginning of a new semester."
@@ -94,16 +101,21 @@ label start:
 
     mc "(slowly opens his eyes)"
     mc "(yawns while reaching for his phone)"
+
+    show mc normal at pos
+
     mc "What time is it? Why is it so noisy?"
     mc "(checks his phone)"
     mc "Oh, it's only 8 o'clock..."
     mc "(realizes)"
 
-    show mc panic at pos
+    show mc scared at pos
 
     mc "Eh?"
     mc "HUH??"
     mc "IT'S 8 O'CLOCK??"
+
+    show mc panic at pos
 
     n "MC gets out of his bed and frantically searches for his belongings."
 
@@ -126,6 +138,8 @@ label scene_2:
     mc "*pants pants*"
     mc "I.. made… it…"
 
+    show mc normal at pos
+
     n "MC takes a seat and gets through the class while being sleepy."
 
     prof "And that concludes today's class, see you next week for the quiz"
@@ -141,15 +155,26 @@ label scene_3:
     n "MC goes to the canteen to buy some coffee from the vending machine"
     n "As MC arrived at the vending machine, MC saw a poster for a photography contest"
 
+    show mc amazed at pos
+
     mc "Hmm, a photography contest huh?.."
+
+    show mc normal at pos
+
     mc "Let's see, what are the requirements.."
 
     n "MC looks over the requirements for the contest"
 
     mc "Okay, this should be doable, and what's the theme?.."
     mc "The theme is…"
+
+    show mc scared at pos
+
     mc "Paranormal Activity??!!"
     mc "And the deadline is.. next week??!!"
+
+    show mc normal at pos
+
     mc "I'll have to start taking pictures today then.."
     n "MC touches his camera and suddenly is filled with energy"
 
@@ -193,6 +218,9 @@ label scene_4:
     n "MC's clock shows 16:00"
 
     mc "I still have some time left.."
+
+    show mc sleep at pos
+
     mc "I guess I'm taking a nap first"
 
     jump scene_5
@@ -202,6 +230,9 @@ label scene_5:
     n "A considerable amount of time has passed."
 
     mc "*drools*"
+
+    show mc normal at pos
+
     mc "*wakes up*"
     mc "Hmm... where am I?"
     mc "*looks around*"
@@ -219,7 +250,11 @@ label scene_5:
 
     n "Before he left, he saw that the hallway that he usually goes through to get to his class is also ruined."
 
+    show mc panic at pos
+
     mc "What the hell?"
+
+    show mc normal at pos
 
     n "Puzzled, MC hastily makes his way through the hallway and out towards the middle of his campus."
 
@@ -235,10 +270,15 @@ label scene_6:
     n "Unfortunately, the gate was covered in an invisible barrier, so MC was held by the gate."
 
     mc "What is this?"
+
+    show mc panic at pos
+
     mc "Why can't I go out?"
 
     n "MC could not exit the gate, so MC decided to go back inside the campus."
     n "MC arrived back at the middle of the campus."
+
+    show mc normal at pos
 
     mc "What has this place become?"
 
@@ -252,37 +292,55 @@ label scene_6:
     n "\"The deal was that those ten people were to be sacrificed into offerings,\""
     n "\"which in turn would ease the Overseer's madness.\""
     n "\"The Overseer would then leave, but those offerings would remain here.\""
-    n "\"Those ten offerings are spread across this domain and should be presented to ease"
-    n "the Overseer's anger if The Overseer was ever to come back.\""
+    n "\"Those ten offerings are spread across this domain and should be presented to ease..."
+    n "...the Overseer's anger if The Overseer was ever to come back.\""
     n "\"Among those offerings, a strong bond exists between some of them.\""
-    n "\"Those offerings have long since lost much of their power; hence, it is needed to make"
-    n "a set out of them.\""
-    n "\"Only offerings with a strong bond can calm the Overseer, and only then might you be"
-    n "spared.\""
+    n "\"Those offerings have long since lost much of their power; hence, it is needed to make..."
+    n "...a set out of them.\""
+    n "\"Only offerings with a strong bond can calm the Overseer, and only then might you be..."
+    n "...spared.\""
     n "\"Beware that only thrice are you given the chance to present your offerings.\""
     n "The writing ends there."
+
+    show mc think at pos
 
     mc "What does this mean?"
     mc "Does this mean that the Overseer is back?"
     mc "Does this also mean that I need to go and gather those offerings?"
     mc "How do I even find these things? It's not like I know how they look like."
 
+    show mc normal at pos
+
     n "There was a small piece of paper with words written in blood on it."
-    n "MC took the paper and decides to take a look."
+    n "MC took the paper and decided to take a look."
     n "\"Use the light, and darkness will be imprisoned.\""
 
     mc "Light? Why would I need light? Where would I even get light from?"
     mc "*suddenly realizes*"
+
+    show mc amazed at pos
+
     mc "OH RIGHT! I have my phone!"
     mc "*reaches out for his phone*"
-    mc "I should try and call my friend-"
+
+    show mc normal at pos
+
+    mc "I should try to call my friend-"
 
     n "MC's phone screen shows a dead battery icon."
 
+    show mc panic at pos
+
     mc "ARE YOU KIDDING ME?"
+
+    show mc think at pos
+
     mc "What can I do…."
     mc "*looks down and saw that he brought his camera with him*"
     mc "THIS IS IT! I can use my flash for the light, although I don't know when it will be used."
+
+    show mc smile at pos
+
     mc "Alright then… time to get those offerings ASAP. I don't want to be here for much longer."
 
     jump scene_7
@@ -298,16 +356,25 @@ label scene_7:
     n "*screeches*"
 
     n "(insert jumpscare 1: Guardian A)"
+
+    show mc veryscared at pos
+
     $ play_jump()
     show guardian_a at jumpscare_transform onlayer master with Dissolve(0.2)
     pause 0.5
     hide guardian_a with Dissolve(0.2)
 
+    show mc verypanic at pos
+
     mc "WOAHHH"
+
+    show mc panic at pos
 
     n "A guardian of the offering shows itself to MC."
 
     ga "FOR WHAT REASON HAVE YOU COME HERE?"
+
+    show mc normal at pos
 
     mc "(Oh.. damn..)"
     mc "(What the hell is that thing??)"
@@ -318,33 +385,56 @@ label scene_7:
     ga "I am not the Overseer."
     ga "I will ask again, WHY HAVE YOU COME HERE?"
 
+    show mc think at pos
+
     mc "Okay, okay.. chill out.."
+
+    show mc normal at pos
+
     mc "I'm here to gather offerings for the Overseer."
     mc "Do you know of any such things around here?"
 
     ga "I happen to know some of it."
 
+    show mc amazed at pos
+
     mc "Oh yea?? Tell me about it!"
 
     ga "I don't think I will."
+
+    show mc normal at pos
 
     mc "Why???"
 
     ga "Because I AM the guardian for the offerings here."
 
+    show mc scared at pos
+
     mc "WHAT??"
     mc "(I'LL BE DAMNED.)"
+
+    show mc normal at pos
 
     ga "Although…"
     ga "I will hand over the offering and some information if you pass my trial."
 
+    show mc think at pos
+
     mc "A trial…?"
+
+    show mc panic at pos
+
     mc "You're not going to ask me to die, won't you?"
 
     ga "No, but if you fail…"
     ga "I WILL EAT YOU!"
 
+    show mc veryscared at pos
+
     mc "THAT'S NOT FAIR!"
+
+    show mc smile at pos
+
     mc "Fine! If I win, I'll also get the opportunity to take a photo of you!"
 
     ga "Do as you wish."
@@ -357,6 +447,9 @@ label scene_7:
 label choice_2:
 
     ga "Your trial is to answer my questions."
+
+    show mc think at pos
+
     ga "I weave unity in diversity and a sweet embrace which silences discord."
     ga "I exist internally."
     ga "What am I?"
@@ -382,7 +475,12 @@ label choice_2:
 
         ga "Huh?"
         ga "You got both answers right?"
+
+        show mc amazed at pos
+
         ga "NO WAY"
+
+        show mc happy at pos
 
         mc "YOU'RE MINE NOW!"
 
@@ -392,17 +490,27 @@ label choice_2:
 
         n "Guardian A vanished and dropped two orbs and a scroll."
 
+        show mc think at pos
+
         mc "So.. this is the offering? And this scroll…. let's see…"
 
         n "MC reads the scroll."
+
+        show mc normal at pos
+
         n "This is Harmony and Humanity."
         n "Harmony connects and humanity exchanges."
         n "Without information, humanity collapses."
         n "To have harmony, a thorough evaluation is needed."
         n "The scroll ends there."
 
+        show mc think at pos
+
         mc "So.. this is harmony and humanity."
         mc "We got two, so eight more to go."
+
+        show mc smile at pos
+
         mc "I can do this!"
 
         n "MC proceeds to wander the altered university."
@@ -411,6 +519,8 @@ label choice_2:
 
     elif (choice == choice2):
         
+        show mc veryscared at pos
+
         ga "HAHAHAHA"
         ga "TOO BAD"
         ga "YOU'RE MINE!"
@@ -424,6 +534,8 @@ label choice_2:
 
     else:
         
+        show mc veryscared at pos
+
         ga "HAHAHAHA"
         ga "You are DEAD wrong!"
 
@@ -446,10 +558,15 @@ label game_over_c2:
             return
 
 label scene_8:
+
     n "After wandering around for a bit, MC found a library."
+
+    show mc think at pos
 
     mc "A library huh..."
     mc "There should be something here."
+
+    show mc normal at pos
 
     n "MC enters the library."
 
@@ -465,6 +582,9 @@ label scene_8:
     mc "HEY! WAKE UP!"
 
     n "(insert jumpscare 2: Guardian B)"
+
+    show mc scared at pos
+
     $ play_jump()
     show guardian_b at jumpscare_transform onlayer master with Dissolve(0.2)
     pause 0.5
@@ -472,13 +592,20 @@ label scene_8:
 
     gb "WHAT DO YOU WANT?"
 
+    show mc veryscared at pos
+
     mc "*shocked*"
+
+    show mc panic at pos
+
     mc "I- I.. want to take your offerings!"
 
     gb "You think a puny human like you who disturbs one's rest is worthy of getting my offerings?"
     gb "Try again, fool!"
 
     n "Guardian B goes back to sleep."
+
+    show mc normal at pos
 
     mc "Damn it!"
     mc "(Quick! I need to think how to persuade this thing.)"
@@ -516,6 +643,8 @@ label choice_3:
     $ choice = None
     $ choice2 = None
 
+    show mc think at pos
+
     menu: 
         "Imagination":
             $ choice = "imagination"
@@ -538,15 +667,22 @@ label choice_3:
         gb "You got both answers right..."
         gb "You are worthy of my offering."
 
+        show mc happy at pos
+
         mc "Neat!"
         mc "Hey! Check this out!"
 
         n "(insert camera flash)"
         n "Guardian B vanished, and just like Guardian A, dropped two orbs and a scroll."
 
+        show mc normal at pos
+
         mc "Let's see what this scroll says."
 
         n "MC reads the scroll."
+
+        show mc think at pos
+
         n "This is Imagination and Evaluation."
         n "Through imagination, growth prevails, and through evaluation, a connection is achieved."
         n "Without evaluation, harmony won't exist."
@@ -554,6 +690,9 @@ label choice_3:
         n "The scroll ends there."
 
         mc "Hmm.. okay.."
+
+        show mc normal at pos
+
         mc "I don't really understand but okay."
         mc "Time to get to the next ones!"
 
@@ -562,6 +701,8 @@ label choice_3:
         jump scene_9
     
     elif (choice == choice2):
+
+        show mc veryscared at pos
 
         gb "You got one wrong."
         gb "That's what you get for being a smartass."
@@ -575,6 +716,8 @@ label choice_3:
         jump game_over_c3
 
     else:
+
+        show mc veryscared at pos
 
         gb "You didn't even get anything right."
         gb "Why did you even try?"
@@ -610,17 +753,27 @@ label scene_9:
     mc "Not much has changed hu-HH???"
 
     n "(insert jumpscare 3: Guardian C)"
+
+    show mc scared at pos
+
     $ play_jump()
     show guardian_c at jumpscare_transform onlayer master with Dissolve(0.2)
     pause 0.5
     hide guardian_c with Dissolve(0.2)
 
+    show mc veryscared at pos
+
     n "MC sees a guardian mixing chemicals in the lab."
     n "The guardian, realizing someone went in, went up to MC's face."
+
+    show mc panic at pos
 
     gc "WHY DID YOU DISTURB ME?"
 
     mc "Oh, sorry."
+
+    show mc normal at pos
+
     mc "I didn't know that someone was here."
 
     gc "LEAVE!"
@@ -635,11 +788,15 @@ label scene_9:
     gc "YOU DARE TO SAY THAT TO MY FACE?!"
     gc "FINE! IF YOU CAN'T ANSWER MY QUESTION, YOU WILL BE MY TEST SUBJECT."
 
+    show mc smile at pos
+
     mc "Sure, you professor wannabe. I'll even take a photo of you as a commemoration for the dumbest scientist ever!"
 
     jump choice_4
 
 label choice_4:
+
+    show mc normal at pos
 
     gc "ANSWER THESE QUESTIONS."
     gc "I AM OF GIVE AND TAKE."
@@ -648,19 +805,21 @@ label choice_4:
     $ choice = None
     $ choice2 = None
 
+    show mc think at pos
+
     menu:
-        "growth":
+        "Growth":
             $ choice = "growth"
-        "exchange":
+        "Exchange":
             $ choice = "exchange"
 
     gc "I AM OF ADVANCEMENT."
     gc "I AM A MUST FOR DEVELOPMENT WITH OTHERS."
 
     menu:
-        "growth":
+        "Growth":
             $ choice2 = "growth"
-        "exchange":
+        "Exchange":
             $ choice2 = "exchange"
 
     if choice == "exchange" and choice2 == "growth":
@@ -669,6 +828,8 @@ label choice_4:
         gc "YOU ANSWERED CORRECTLY?"
         gc "YOU MUST BE CHEATING."
         gc "THERE IS NO OTHER EXPLANATION."
+
+        show mc happy at pos
 
         mc "It's just that your question is too easy."
         mc "Truly a dumb wannabe."
@@ -680,16 +841,23 @@ label choice_4:
         n "(insert camera flash)"
         n "Guardian C vanished and dropped two orbs and a scroll, just like its predecessors."
 
+        show mc normal at pos
+
         mc "Phew… that was quick and fearsome."
         mc "Thank goodness, I didn't stutter back then."
         mc "Now let's see what this wannabe has to offer."
 
         n "MC reads the scroll."
+
+        show mc think at pos
+
         n "This is the Growth and Exchange."
         n "To have growth, you need to have imagination, and to exchange something, you need to have information."
         n "Growth affects depiction."
         n "While exchange is a part of humanity."
         n "The scroll ends here."
+
+        show mc normal at pos
 
         mc "More weird stuff.."
         mc "I'll keep it in mind, though."
@@ -698,6 +866,8 @@ label choice_4:
         jump scene_10
 
     else:
+
+        show mc veryscared at pos
 
         gc "HAHAHAH"
         gc "A RUNT LIKE YOU TRIES TO DEFY ME BUT YOU COULD NOT EVEN ANSWER CORRECTLY"
@@ -740,10 +910,14 @@ label scene_10:
     mc "*reaches out for the ball*"
 
     n "(insert jumpscare 4: Guardian D)"
+
+    show mc scared at pos
     $ play_jump()
     show guardian_d at jumpscare_transform onlayer master with Dissolve(0.2)
     pause 0.5
     hide guardian_d with Dissolve(0.2)
+
+    show mc veryscared at pos
 
     mc "UWAHHHHH"
 
@@ -756,6 +930,8 @@ label scene_10:
     gd "Your reactions are excellent!"
     gd "Little pranks like this always work."
 
+    show mc normal at pos
+
     mc "You got me good there."
 
     gd "Now let's get to the serious part."
@@ -763,7 +939,7 @@ label scene_10:
 
     mc "How do you kno-"
 
-    gd "OF COURSEEE, I would knoww."
+    gd "Of courseee... I would knoww."
     gd "For I am the most enchanting and elegant guardian of all."
 
     mc "(What the hell..)"
@@ -784,6 +960,8 @@ label scene_10:
     gd "Fine, just answer my question correctly, and you'll get what you want."
     gd "However, if you get even one wrong, I'll just make you my plaything then."
 
+    show mc amazed at pos
+
     mc "Deal!"
 
     jump choice_5
@@ -791,6 +969,9 @@ label scene_10:
 label choice_5:
 
     gd "Listen carefully."
+
+    show mc think at pos
+
     gd "I am the key to the truth."
     gd "Knowledge without me is nothing."
     gd "What am I?"
@@ -833,9 +1014,13 @@ label choice_5:
 
         gd "Everything.. is correct.."
 
+        show mc happy at pos
+
         mc "Serves you right, now hand'em over!"
 
         gd "Nuh uh!"
+
+        show mc normal at pos
 
         mc "You jerk!"
 
@@ -854,13 +1039,18 @@ label choice_5:
         n "(insert camera flash)"
         n "Guardian D vanished and dropped not two, but three orbs and a scroll."
         n "The scroll reads:"
+
+        show mc think at pos
+
         n "This is Information, Connection, and Depiction."
         n "Depicting an imagination would amplify growth."
         n "But an exchange of information would form humanity."
         n "And through connection and evaluation, harmony is achieved."
         n "The scroll ends here."
 
-        mc "What the hell was that!"
+        show mc normal at pos
+
+        mc "What the hell was that!?"
         mc "Damn, head towards my past?"
         mc "Could it be hinting me to go back to where I woke up?"
         mc "I should check it out."
@@ -870,6 +1060,8 @@ label choice_5:
         jump scene_11
     
     elif(choice == "information" and choice2 == "connection") or (choice == "information" and choice3 == "depiction") or (choice2 == "connection" and choice3 == "depiction"):
+
+        show mc veryscared at pos
 
         gd "OH NO!"
 
@@ -888,6 +1080,8 @@ label choice_5:
     
     elif choice == "information" or choice2 == "connection" or choice3 == "depiction":
 
+        show mc veryscared at pos
+
         gd "Ooh, nice try, but you only got one right."
         gd "Tough luck, Big Boy!"
 
@@ -899,6 +1093,8 @@ label choice_5:
         jump game_over_c5
     
     else:
+
+        show mc veryscared at pos
 
         gd "I see that you got everything wrong."
         gd "BE MY SLAVE FOR ETERNITY!"
@@ -925,22 +1121,29 @@ label scene_11:
 
     n "Upon arriving at his classroom, MC realized something strange."
 
+    show mc think at pos
+
     mc "Why did that guardian lead me here?"
     mc "There must be something important that I missed."
 
     n "As MC investigated more of the classroom, the more he became sure."
 
+    show mc normal at pos
+
     mc "There must be something here, I'm sure of it!"
 
     n "MC looks towards the whiteboard."
-    n "MC realized it wasn't just some random scribbles."
+    n "MC realized it weren't just some random scribbles."
     n "The whiteboard says:"
     n "Behind you!"
 
+    show mc scared at pos
     $ play_jump()
     show guardian_e at jumpscare_transform onlayer master with Dissolve(0.2)
     pause 0.5
     hide guardian_e with Dissolve(0.2)
+
+    show mc veryscared at pos
 
     mc "WOAHHH"
     n "Guardian E appears from the walls and it calls for its friend."
@@ -963,12 +1166,16 @@ label scene_11:
 
     n "Guardian G was formed from the words written on the whiteboard."
 
+    show mc panic at pos
+
     mc "Wh- what do you want??"
     mc "Why are there so many of you??"
 
     ge "This is where the Orb of Sovereignty is held."
     gf "We are the guardians of this place."
     gg "No one shall take the Orb of Sovereignty from us."
+
+    show mc normal at pose
 
     mc "So, this is the final place."
     mc "Give me your orb!"
@@ -979,18 +1186,20 @@ label scene_11:
 
     gefg "That's true, so if you want this, you have to get through us."
 
-    mc "Heh, I got this camera, why should I be afraid of you."
+    mc "Heh, I got this camera, why should I be afraid of you?"
 
     n "MC looks at his camera and realizes that his camera battery is dead."
     n "For the first time in his life, MC felt most horrified."
     
+    show mc verypanic at pos
+
     mc "(What should I do????)"
 
     jump choice_6
 
 label choice_6:
 
-    gefg "You may choose, to remain here for eternity or to face us and get away"
+    gefg "You may choose, to remain here for eternity, or to face us and get away"
 
     $ choice = None
 
@@ -1002,9 +1211,14 @@ label choice_6:
 
     if choice == "remain":
 
+        show mc normal at pos
+
         mc "I choose to remain here."
         mc "*fearful*"
         gefg "Then you will be one of us."
+
+        show mc verypanic at pos
+
         n "The Trio Guardian raises the Orb of Sovereignty and casts its power upon MC."
         n "MC was then turned into one of the guardians, waiting for the next generation to come."
 
@@ -1017,6 +1231,8 @@ label choice_6:
 
     else:
 
+        show mc normal at pos
+
         mc "I'll fight for my survival!"
         mc "I will conquer you and be free!"
         gefg "Very well, then face us!"
@@ -1024,6 +1240,8 @@ label choice_6:
         jump choice_7
 
 label choice_7:
+
+    show mc think at pos
 
     ge "I am the one true king."
     gf "Everything is under my rule."
@@ -1045,6 +1263,8 @@ label choice_7:
         gefg "However, you won't be able to defeat us."
         gefg "Your light is no more."
 
+        show mc smile at pos
+
         mc "My light might be gone, but I can always get more light!"
 
         n "MC rushes through the three guardians and took the Orb of Sovereignty."
@@ -1053,11 +1273,16 @@ label choice_7:
 
         n "The light from the Orb of Sovereignty clashes with the guardians, which made them vanish and revert back into writings on the wall."
         n "The writing says:"
+
+        show mc think at pos
+
         n "A sovereign needs to be able to evaluate themselves through their imagination."
         n "But for a sovereign to grow, they will need to depict themselves through their connections."
         n "A sovereign's humanity allows them to exchange information with harmony."
         n "Among these gardens of words, a secret is told."
         n "The writing ends there."
+
+        show mc amazed at pos
 
         mc "I finally have all of them!"
         mc "Now, to the altar!"
@@ -1065,6 +1290,8 @@ label choice_7:
         jump scene_12
 
     else:
+
+        show mc veryscared at pos
 
         gefg "Your chance ends here."
         gefg "Goodbye"
@@ -1078,6 +1305,8 @@ label choice_7:
         return
 
 label scene_12:
+
+    show mc normal at pos
 
     n "After obtaining all 10 offerings, MC heads over to the altar to present the offerings he got."
 
@@ -1106,6 +1335,9 @@ label choice_8:
         "Whiteboard Writing":
             $ choice = "whiteboard"
         "I got it":
+
+            show mc amazed at pos
+            
             mc "I got it!"
             jump choice_9
 
@@ -1138,6 +1370,8 @@ label choice_8:
     jump choice_8
 
 label choice_9:
+
+    show mc think at pos
 
     n "Select which offering to give on the left side"
 
@@ -1179,6 +1413,9 @@ label choice_9:
         n "A ring of a bell can be heard from the altar."
         n "A portal opens, and from it emerges all the previous guardians along with the Overseer."
         ov "YOU HAVE PLEASED ME."
+
+        show mc normal at pos
+
         mc "What?!"
         ov "Head into the portal."
         n "The Overseer, along with the guardians, heads inside the portal."
@@ -1191,7 +1428,9 @@ label choice_9:
         n "No sound came from the altar."
         n "A portal opened, and from it emerged all the previous guardians, standing guard beside the portal."
 
-        guardians "PLEASE HEAD INSIDE!"
+        ga "PLEASE HEAD INSIDE!"
+
+        show mc panic at pos
 
         mc "Huh?"
 
@@ -1205,6 +1444,8 @@ label choice_9:
         n "A portal opened, and from it emerged all the previous guardians along with the Overseer."
 
         ov "YOU HAVE DISAPPOINTED ME."
+
+        show mc veryscared at pos
 
         mc "What?!"
 
@@ -1222,11 +1463,16 @@ label scene_13:
 
     mc "Huh? Where am I?"
     mc "*looks around*"
+
+    show mc happy at pos
+
     mc "I'm back! Or was it just a dream?"
     mc "*looks at his camera*"
     mc "*checks his photos*"
 
     n "Pictures of the previous guardians can be seen inside of MC's photo roll."
+
+    show mc panic at pos
 
     mc "Oh my god, IT WAS REAL?!!!"
 
@@ -1238,11 +1484,15 @@ label scene_13:
 
     ov "Now, who's next?"
 
+    show mc normal at pos
+
     n "THE END"
 
     return
 
 label scene_14:
+
+    show mc normal at pos
 
     mc "*wakes up*"
     mc "Huh? Where am I?"
@@ -1252,6 +1502,8 @@ label scene_14:
 
     ov "You are to be sacrificed."
     ov "PREPARE YOURSELF."
+
+    show mc veryscared at pos
 
     mc "WHAT? NO!"
 
@@ -1276,6 +1528,8 @@ label scene_15:
 
     ov "Welcome, MC."
 
+    show mc scared at pos
+
     mc "Who are you? Are you the Overseer?"
 
     ov "Yes, I am."
@@ -1285,10 +1539,14 @@ label scene_15:
 
     ov "Because you were sleeping."
 
+    show mc verypanic at pos
+
     mc "THAT'S ALL?"
 
     ov "Yes, however, you have exceeded my expectations, and so I will change your fate."
     ov "You will be the next Overseer."
+
+    show mc veryscared at pos
 
     mc "WHAT?!"
 
