@@ -3,7 +3,7 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-define mc = Character('MC', color="#ffffff")
+define mc = Character('Udba Impact', color="#ffffff")
 image mc normal = "default mc 1.png"
 image mc panic = "panic mc 1.png"
 image mc amazed = "amazed mc 1.png"
@@ -14,6 +14,7 @@ image mc smile = "smile mc 1.png"
 image mc happy = "happy mc 1.png"
 image mc veryscared = "scared mc 3.png"
 image mc verypanic = "panic mc 3.png"
+image mc guardian = "mc guardian.png"
 transform pos:
     xalign 0.5
     yalign 0.01
@@ -40,25 +41,27 @@ image guardian_d = "gd.png"
 image guardian_e = "ge.png"
 image guardian_f = "gf.png"
 image guardian_g = "gg.png"
+image overseer = "ov.png"
+image white = "white.jpg"
 transform jumpscare_transform:
     xalign 0.5
     yalign 0.3
-    zoom 7
+    zoom 4
 
 transform jumpscare_transform_left:
-    xalign 0.01
+    xalign -0.3
     yalign 0.5
-    zoom 5
+    zoom 2
 
 transform jumpscare_transform_center:
-    xalign 0.5
+    xalign 0.25
     yalign 0.5
-    zoom 5
+    zoom 2
 
 transform jumpscare_transform_right:
-    xalign 0.99
+    xalign 0.95
     yalign 0.5
-    zoom 5
+    zoom 1
 
 
 default choice = None
@@ -79,13 +82,21 @@ init python:
 
 label start:
 
+    $ mc_name = renpy.input("What is your name? Blank for default").strip() or "Udba Impact"
+    $ mc.name = mc_name
+
     scene bg room
-    show mc sleep at pos
+
+    play music "musik mengsenang.wav" fadein 1.0 volume 0.5
+
+    $ renpy.block_rollback()
 
     n "A gust of fresh wind flew by as birds started to chirp."
     n "It was the beginning of a new semester."
     n "Everyone was getting ready to start the day."
     n "But that was not the case for MC."
+
+    show mc sleep at pos
 
     mc "(snoring loudly)"
 
@@ -133,6 +144,10 @@ label start:
 
 label scene_2:
 
+    show bg class
+
+    $ renpy.block_rollback()
+
     n "The hurried MC makes it just in time for his first class of the year."
 
     mc "*pants pants*"
@@ -151,6 +166,10 @@ label scene_2:
     jump scene_3
 
 label scene_3:
+
+    show bg canteen
+
+    $ renpy.block_rollback()
 
     n "MC goes to the canteen to buy some coffee from the vending machine"
     n "As MC arrived at the vending machine, MC saw a poster for a photography contest"
@@ -187,6 +206,9 @@ label scene_3:
 
     menu:
         "Buy the coffee":
+
+            $ renpy.block_rollback()
+
             $ choice = "buy"
 
             mc "I suppose I still should get one!"
@@ -195,6 +217,9 @@ label scene_3:
             n "MC finished his class as usual and made his way back to his home safely"
         
         "Don't buy the coffee":
+
+            $ renpy.block_rollback()
+
             $ choice = "dont buy"
 
             mc "I suppose I don't need to!"
@@ -207,6 +232,10 @@ label scene_3:
         jump scene_4
 
 label scene_4:
+
+    show bg class
+
+    $ renpy.block_rollback()
 
     n "MC goes back to his class and went through the rest of his class for the day"
     n "As MC didn't buy the coffee, MC became very sleepy"
@@ -226,6 +255,12 @@ label scene_4:
     jump scene_5
 
 label scene_5:
+
+    play music "ambience_menu.wav" fadein 1.0 volume 0.5
+
+    show bg class dark
+
+    $ renpy.block_rollback()
 
     n "A considerable amount of time has passed."
 
@@ -261,6 +296,12 @@ label scene_5:
     jump scene_6
 
 label scene_6:
+
+    play music "musik mengserius.wav" fadein 1.0 volume 0.5
+
+    show bg plawid
+
+    $ renpy.block_rollback()
 
     n "As MC got out of his building, MC saw that the sky was dark red just like blood."
 
@@ -347,6 +388,10 @@ label scene_6:
 
 label scene_7:
     
+    show bg parking
+
+    $ renpy.block_rollback()
+
     n "To gather the offerings, MC decided to wander through the altered university and arrived at the parking lot."
 
     mc "Where can I find one of these offerings?"
@@ -354,8 +399,6 @@ label scene_7:
 
     n "Suddenly, a loud noise can be heard."
     n "*screeches*"
-
-    n "(insert jumpscare 1: Guardian A)"
 
     show mc veryscared at pos
 
@@ -365,6 +408,8 @@ label scene_7:
     hide guardian_a with Dissolve(0.2)
 
     show mc verypanic at pos
+
+    $ renpy.block_rollback()
 
     mc "WOAHHH"
 
@@ -457,8 +502,10 @@ label choice_2:
     $ choice = None
     menu:
         "Harmony":
+            $ renpy.block_rollback()
             $ choice = "harmony"
         "Humanity":
+            $ renpy.block_rollback()
             $ choice = "humanity"
     
     ga "I am the invisible thread that ties the human spirit in the past, present, and future."
@@ -467,11 +514,15 @@ label choice_2:
 
     menu:
         "Harmony":
+            $ renpy.block_rollback()
             $ choice2 = "harmony"
         "Humanity":
+            $ renpy.block_rollback()
             $ choice2 = "humanity"
     
     if choice == "harmony" and choice2 == "humanity":
+
+        $ renpy.block_rollback()
 
         ga "Huh?"
         ga "You got both answers right?"
@@ -485,6 +536,10 @@ label choice_2:
         mc "YOU'RE MINE NOW!"
 
         n "(insert camera flash)"
+
+        show white with Dissolve(0.1)
+        $ renpy.pause(0.1)
+        hide white with Dissolve(0.1)
 
         ga "NOOOO!"
 
@@ -518,6 +573,10 @@ label choice_2:
         jump scene_8
 
     elif (choice == choice2):
+
+        play music "ambience_menu.wav" fadein 1.0 volume 0.5
+
+        $ renpy.block_rollback()
         
         show mc veryscared at pos
 
@@ -530,9 +589,15 @@ label choice_2:
         pause 0.5
         hide guardian_a with Dissolve(0.2)
 
+        $ renpy.block_rollback()
+
         jump game_over_c2
 
     else:
+
+        play music "ambience_menu.wav" fadein 1.0 volume 0.5
+
+        $ renpy.block_rollback()
         
         show mc veryscared at pos
 
@@ -544,6 +609,8 @@ label choice_2:
         pause 0.5
         hide guardian_a with Dissolve(0.2)
 
+        $ renpy.block_rollback()
+
         jump game_over_c2
 
 label game_over_c2:
@@ -552,12 +619,19 @@ label game_over_c2:
     menu:
         "Yes":
             "Let's try again..."
+
+            play music "musik mengserius.wav" fadein 1.0 volume 0.5
+
             jump choice_2
         "No":
             "Game ended."
             return
 
 label scene_8:
+
+    show bg library
+
+    $ renpy.block_rollback()
 
     n "After wandering around for a bit, MC found a library."
 
@@ -581,14 +655,14 @@ label scene_8:
     mc "This should be the next guardian, right?? I should wake it up."
     mc "HEY! WAKE UP!"
 
-    n "(insert jumpscare 2: Guardian B)"
-
     show mc scared at pos
 
     $ play_jump()
     show guardian_b at jumpscare_transform onlayer master with Dissolve(0.2)
     pause 0.5
     hide guardian_b with Dissolve(0.2)
+
+    $ renpy.block_rollback()
 
     gb "WHAT DO YOU WANT?"
 
@@ -635,6 +709,8 @@ label scene_8:
 
 label choice_3:
 
+    $ renpy.block_rollback()
+
     gb "Here's my trial!"
     gb "I am the endless realm of a fanciful dream."
     gb "Without me, innovation wouldn't exist."
@@ -647,8 +723,10 @@ label choice_3:
 
     menu: 
         "Imagination":
+            $ renpy.block_rollback()
             $ choice = "imagination"
         "Evaluation":
+            $ renpy.block_rollback()
             $ choice = "Evaluation"
 
     gb "I am the root of judgment."
@@ -657,11 +735,15 @@ label choice_3:
 
     menu:
         "Imagination":
+            $ renpy.block_rollback()
             $ choice2 = "imagination"
         "Evaluation":
+            $ renpy.block_rollback()
             $ choice2 = "Evaluation"
 
     if choice == "imagination" and choice2 == "Evaluation":
+
+        $ renpy.block_rollback()
 
         gb "Hmm.."
         gb "You got both answers right..."
@@ -673,6 +755,11 @@ label choice_3:
         mc "Hey! Check this out!"
 
         n "(insert camera flash)"
+
+        show white with Dissolve(0.1)
+        $ renpy.pause(0.1)
+        hide white with Dissolve(0.1)
+
         n "Guardian B vanished, and just like Guardian A, dropped two orbs and a scroll."
 
         show mc normal at pos
@@ -702,6 +789,10 @@ label choice_3:
     
     elif (choice == choice2):
 
+        play music "ambience_menu.wav" fadein 1.0 volume 0.5
+
+        $ renpy.block_rollback()
+
         show mc veryscared at pos
 
         gb "You got one wrong."
@@ -713,9 +804,15 @@ label choice_3:
         pause 0.5
         hide guardian_b with Dissolve(0.2)
 
+        $ renpy.block_rollback()
+
         jump game_over_c3
 
     else:
+
+        play music "ambience_menu.wav" fadein 1.0 volume 0.5
+
+        $ renpy.block_rollback()
 
         show mc veryscared at pos
 
@@ -729,6 +826,8 @@ label choice_3:
         pause 0.5
         hide guardian_b with Dissolve(0.2)
 
+        $ renpy.block_rollback()
+
         jump game_over_c3
 
 label game_over_c3:
@@ -737,12 +836,19 @@ label game_over_c3:
     menu:
         "Yes":
             "Let's try again..."
+
+            play music "musik mengserius.wav" fadein 1.0 volume 0.5
+
             jump choice_3
         "No":
             "Game ended."
             return
 
 label scene_9:
+
+    show bg lab
+
+    $ renpy.block_rollback()
 
     n "MC decides to head to the laboratory to see if there is anything there."
 
@@ -752,8 +858,6 @@ label scene_9:
     mc "*looks around*"
     mc "Not much has changed hu-HH???"
 
-    n "(insert jumpscare 3: Guardian C)"
-
     show mc scared at pos
 
     $ play_jump()
@@ -762,6 +866,8 @@ label scene_9:
     hide guardian_c with Dissolve(0.2)
 
     show mc veryscared at pos
+
+    $ renpy.block_rollback()
 
     n "MC sees a guardian mixing chemicals in the lab."
     n "The guardian, realizing someone went in, went up to MC's face."
@@ -798,6 +904,8 @@ label choice_4:
 
     show mc normal at pos
 
+    $ renpy.block_rollback()
+
     gc "ANSWER THESE QUESTIONS."
     gc "I AM OF GIVE AND TAKE."
     gc "TO TRADERS, I AM LIFE ITSELF."
@@ -809,8 +917,10 @@ label choice_4:
 
     menu:
         "Growth":
+            $ renpy.block_rollback()
             $ choice = "growth"
         "Exchange":
+            $ renpy.block_rollback()
             $ choice = "exchange"
 
     gc "I AM OF ADVANCEMENT."
@@ -818,11 +928,15 @@ label choice_4:
 
     menu:
         "Growth":
+            $ renpy.block_rollback()
             $ choice2 = "growth"
         "Exchange":
+            $ renpy.block_rollback()
             $ choice2 = "exchange"
 
     if choice == "exchange" and choice2 == "growth":
+
+        $ renpy.block_rollback()
 
         gc "HUH?"
         gc "YOU ANSWERED CORRECTLY?"
@@ -839,6 +953,11 @@ label choice_4:
         mc "So loud… Bye Bye."
 
         n "(insert camera flash)"
+
+        show white with Dissolve(0.1)
+        $ renpy.pause(0.1)
+        hide white with Dissolve(0.1)
+
         n "Guardian C vanished and dropped two orbs and a scroll, just like its predecessors."
 
         show mc normal at pos
@@ -867,7 +986,11 @@ label choice_4:
 
     else:
 
+        play music "ambience_menu.wav" fadein 1.0 volume 0.5
+
         show mc veryscared at pos
+
+        $ renpy.block_rollback()
 
         gc "HAHAHAH"
         gc "A RUNT LIKE YOU TRIES TO DEFY ME BUT YOU COULD NOT EVEN ANSWER CORRECTLY"
@@ -878,6 +1001,8 @@ label choice_4:
         pause 0.5
         hide guardian_c with Dissolve(0.2)
 
+        $ renpy.block_rollback()
+
         jump game_over_c4
 
 label game_over_c4:
@@ -886,12 +1011,19 @@ label game_over_c4:
     menu:
         "Yes":
             "Let's try again..."
+
+            play music "musik mengserius.wav" fadein 1.0 volume 0.5
+
             jump choice_4
         "No":
             "Game ended."
             return 
 
 label scene_10:
+
+    show bg basketcourt
+
+    $ renpy.block_rollback()
 
     n "The search for the offerings continues for MC."
 
@@ -909,8 +1041,6 @@ label scene_10:
     mc "Why does this ball seem a bit weird?"
     mc "*reaches out for the ball*"
 
-    n "(insert jumpscare 4: Guardian D)"
-
     show mc scared at pos
     $ play_jump()
     show guardian_d at jumpscare_transform onlayer master with Dissolve(0.2)
@@ -918,6 +1048,8 @@ label scene_10:
     hide guardian_d with Dissolve(0.2)
 
     show mc veryscared at pos
+
+    $ renpy.block_rollback()
 
     mc "UWAHHHHH"
 
@@ -968,6 +1100,8 @@ label scene_10:
 
 label choice_5:
 
+    $ renpy.block_rollback()
+
     gd "Listen carefully."
 
     show mc think at pos
@@ -980,10 +1114,13 @@ label choice_5:
     $ choice2 = None
     menu:
         "Connection":
+            $ renpy.block_rollback()
             $ choice = "connection"
         "Information":
+            $ renpy.block_rollback()
             $ choice = "information"
         "Depiction":
+            $ renpy.block_rollback()
             $ choice = "depiction"
     
     gd "I am the intertwiner of fate."
@@ -992,10 +1129,13 @@ label choice_5:
 
     menu:
         "Connection":
+            $ renpy.block_rollback()
             $ choice2 = "connection"
         "Information":
+            $ renpy.block_rollback()
             $ choice2 = "information"
         "Depiction":
+            $ renpy.block_rollback()
             $ choice2 = "depiction"
     
     gd "I am the representation."
@@ -1004,13 +1144,18 @@ label choice_5:
 
     menu:
         "Connection":
+            $ renpy.block_rollback()
             $ choice3 = "connection"
         "Information":
+            $ renpy.block_rollback()
             $ choice3 = "information"
         "Depiction":
+            $ renpy.block_rollback()
             $ choice3 = "depiction"
 
     if choice == "information" and choice2 == "connection" and choice3 == "depiction":
+
+        $ renpy.block_rollback()
 
         gd "Everything.. is correct.."
 
@@ -1036,7 +1181,13 @@ label choice_5:
         gd "FINE! Then I'll do it myself."
 
         n "Guardian D took MC's camera and flashed itself."
+
         n "(insert camera flash)"
+
+        show white with Dissolve(0.1)
+        $ renpy.pause(0.1)
+        hide white with Dissolve(0.1)
+
         n "Guardian D vanished and dropped not two, but three orbs and a scroll."
         n "The scroll reads:"
 
@@ -1061,7 +1212,11 @@ label choice_5:
     
     elif(choice == "information" and choice2 == "connection") or (choice == "information" and choice3 == "depiction") or (choice2 == "connection" and choice3 == "depiction"):
 
+        play music "ambience_menu.wav" fadein 1.0 volume 0.5
+
         show mc veryscared at pos
+
+        $ renpy.block_rollback()
 
         gd "OH NO!"
 
@@ -1076,11 +1231,17 @@ label choice_5:
         pause 0.5
         hide guardian_d with Dissolve(0.2)
 
+        $ renpy.block_rollback()
+
         jump game_over_c5
     
     elif choice == "information" or choice2 == "connection" or choice3 == "depiction":
 
+        play music "ambience_menu.wav" fadein 1.0 volume 0.5
+
         show mc veryscared at pos
+
+        $ renpy.block_rollback()
 
         gd "Ooh, nice try, but you only got one right."
         gd "Tough luck, Big Boy!"
@@ -1090,11 +1251,17 @@ label choice_5:
         pause 0.5
         hide guardian_d with Dissolve(0.2)
 
+        $ renpy.block_rollback()
+
         jump game_over_c5
     
     else:
 
+        play music "ambience_menu.wav" fadein 1.0 volume 0.5
+
         show mc veryscared at pos
+
+        $ renpy.block_rollback()
 
         gd "I see that you got everything wrong."
         gd "BE MY SLAVE FOR ETERNITY!"
@@ -1104,6 +1271,8 @@ label choice_5:
         pause 0.5
         hide guardian_d with Dissolve(0.2)
 
+        $ renpy.block_rollback()
+
         jump game_over_c5
 
 label game_over_c5:
@@ -1112,12 +1281,19 @@ label game_over_c5:
     menu:
         "Yes":
             "Let's try again..."
+            
+            play music "musik mengserius.wav" fadein 1.0 volume 0.5
+
             jump choice_5
         "No":
             "Game ended."
             return
 
 label scene_11:
+
+    show bg class dark
+
+    $ renpy.block_rollback()
 
     n "Upon arriving at his classroom, MC realized something strange."
 
@@ -1145,6 +1321,8 @@ label scene_11:
 
     show mc veryscared at pos
 
+    $ renpy.block_rollback()
+
     mc "WOAHHH"
     n "Guardian E appears from the walls and it calls for its friend."
     ge "Come, my friends."
@@ -1153,6 +1331,8 @@ label scene_11:
     show guardian_f at jumpscare_transform onlayer master with Dissolve(0.2)
     pause 0.5
     hide guardian_f with Dissolve(0.2)
+
+    $ renpy.block_rollback()
 
     n "Guardian F came down from the ceiling."
     mc "WAHHHHH"
@@ -1163,6 +1343,8 @@ label scene_11:
     show guardian_g at jumpscare_transform onlayer master with Dissolve(0.2)
     pause 0.5
     hide guardian_g with Dissolve(0.2)
+
+    $ renpy.block_rollback()
 
     n "Guardian G was formed from the words written on the whiteboard."
 
@@ -1175,7 +1357,7 @@ label scene_11:
     gf "We are the guardians of this place."
     gg "No one shall take the Orb of Sovereignty from us."
 
-    show mc normal at pose
+    show mc normal at pos
 
     mc "So, this is the final place."
     mc "Give me your orb!"
@@ -1199,19 +1381,27 @@ label scene_11:
 
 label choice_6:
 
+    $ renpy.block_rollback()
+
     gefg "You may choose, to remain here for eternity, or to face us and get away"
 
     $ choice = None
 
     menu:
         "Remain":
+            $ renpy.block_rollback()
             $ choice = "remain"
         "Fight":
+            $ renpy.block_rollback()
             $ choice = "fight"
 
     if choice == "remain":
 
+        play music "ambience_menu.wav" fadein 1.0 volume 0.5
+
         show mc normal at pos
+
+        $ renpy.block_rollback()
 
         mc "I choose to remain here."
         mc "*fearful*"
@@ -1223,15 +1413,19 @@ label choice_6:
         n "MC was then turned into one of the guardians, waiting for the next generation to come."
 
         $ play_jump()
-        show mc amazed at pos
+        show mc guardian at jumpscare_transform onlayer master with Dissolve(0.2)
 
-        n ""
+        $ renpy.block_rollback()
+
+        n ""  
 
         return
 
     else:
 
         show mc normal at pos
+
+        $ renpy.block_rollback()
 
         mc "I'll fight for my survival!"
         mc "I will conquer you and be free!"
@@ -1243,6 +1437,8 @@ label choice_7:
 
     show mc think at pos
 
+    $ renpy.block_rollback()
+
     ge "I am the one true king."
     gf "Everything is under my rule."
     gg "Conquering is what I do best."
@@ -1251,13 +1447,18 @@ label choice_7:
     $ choice = None
     menu:
         "Sovereignty":
+            $ renpy.block_rollback()
             $ choice = "sovereignty"
         "Overseer":
+            $ renpy.block_rollback()
             $ choice = "overseer"
         "God":
+            $ renpy.block_rollback()
             $ choice = "god"
     
     if choice == "overseer":
+
+        $ renpy.block_rollback()
 
         gefg "You have answered correctly."
         gefg "However, you won't be able to defeat us."
@@ -1291,7 +1492,11 @@ label choice_7:
 
     else:
 
+        play music "ambience_menu.wav" fadein 1.0 volume 0.5
+
         show mc veryscared at pos
+
+        $ renpy.block_rollback()
 
         gefg "Your chance ends here."
         gefg "Goodbye"
@@ -1301,12 +1506,18 @@ label choice_7:
         show guardian_f at jumpscare_transform_center
         show guardian_g at jumpscare_transform_right
 
+        $ renpy.block_rollback()
+
         n ""
         return
 
 label scene_12:
 
+    show bg plawid
+
     show mc normal at pos
+
+    $ renpy.block_rollback()
 
     n "After obtaining all 10 offerings, MC heads over to the altar to present the offerings he got."
 
@@ -1337,6 +1548,7 @@ label choice_8:
         "I got it":
 
             show mc amazed at pos
+            $ renpy.block_rollback()
             
             mc "I got it!"
             jump choice_9
@@ -1373,6 +1585,8 @@ label choice_9:
 
     show mc think at pos
 
+    $ renpy.block_rollback()
+
     n "Select which offering to give on the left side"
 
     $ choice = None
@@ -1380,35 +1594,47 @@ label choice_9:
     $ choice3 = None
     menu:
         "Connection":
+            $ renpy.block_rollback()
             $ choice = "connection"
         "Information":
+            $ renpy.block_rollback()
             $ choice = "information"
         "Imagination":
+            $ renpy.block_rollback()
             $ choice = "imagination"
     
     n "Select which offering to give on the middle"
 
     menu:
         "Sovereignty":
+            $ renpy.block_rollback()
             $ choice2 = "sovereignty"
         "Harmony":
+            $ renpy.block_rollback()
             $ choice2 = "harmony"
         "Exchange":
+            $ renpy.block_rollback()
             $ choice2 = "exchange"
         "Depiction":
+            $ renpy.block_rollback()
             $ choice2 = "depiction"
 
     n "Select which offering to give on the right side"
 
     menu:
         "Evaluation":
+            $ renpy.block_rollback()
             $ choice3 = "evaluation"
         "Humanity":
+            $ renpy.block_rollback()
             $ choice3 = "humanity"
         "Growth":
+            $ renpy.block_rollback()
             $ choice3 = "growth"
 
     if (choice == "connection" and choice2 == "harmony" and choice3 == "evaluation") or (choice == "information" and choice2 == "exchange" and choice3 == "humanity") or (choice == "imagination" and choice2 == "depiction" and choice3 == "growth"):
+
+        $ renpy.block_rollback()
 
         n "A ring of a bell can be heard from the altar."
         n "A portal opens, and from it emerges all the previous guardians along with the Overseer."
@@ -1423,7 +1649,11 @@ label choice_9:
 
         jump scene_13
 
-    elif (choice == "imagination" and choice2 == "sovereignty" and choice3 == "evaluation") or (choice == "information" and choice2 == "harmony" and choice3 == "humanity") or (choice == "connection" and choice2 == "exchange" and choice3 == "depiction"):
+    elif (choice == "imagination" and choice2 == "sovereignty" and choice3 == "evaluation"):
+
+        play music "musik mengsenang.wav" fadein 1.0 volume 0.5
+
+        $ renpy.block_rollback()
 
         n "No sound came from the altar."
         n "A portal opened, and from it emerged all the previous guardians, standing guard beside the portal."
@@ -1439,6 +1669,10 @@ label choice_9:
         jump scene_15
 
     else:
+
+        play music "ambience_menu.wav" fadein 1.0 volume 0.5
+
+        $ renpy.block_rollback()
 
         n "An ominous sound came from the altar."
         n "A portal opened, and from it emerged all the previous guardians along with the Overseer."
@@ -1460,6 +1694,10 @@ label choice_9:
     return
 
 label scene_13:
+
+    show bg class
+
+    $ renpy.block_rollback()
 
     mc "Huh? Where am I?"
     mc "*looks around*"
@@ -1492,7 +1730,11 @@ label scene_13:
 
 label scene_14:
 
+    show bg class dark
+
     show mc normal at pos
+
+    $ renpy.block_rollback()
 
     mc "*wakes up*"
     mc "Huh? Where am I?"
@@ -1508,13 +1750,14 @@ label scene_14:
     mc "WHAT? NO!"
 
     n "MC's soul was sacrificed to the Overseer by one of the guardians."
-    n "(insert one of the previous jumpscares except jumpscare 9)"
 
     $ play_jump()
     $ jump = random_jumpscare()
     show expression ("{}".format(jump)) at jumpscare_transform onlayer master with Dissolve(0.2)
     pause 0.5
     hide expression ("{}".format(jump)) with Dissolve(0.2)
+
+    $ renpy.block_rollback()
     
     ov "Now, who's next?"
 
@@ -1523,6 +1766,10 @@ label scene_14:
     return
 
 label scene_15:
+
+    show bg clubroom
+
+    $ renpy.block_rollback()
 
     n "Inside the clubroom was the Overseer."
 
@@ -1551,6 +1798,11 @@ label scene_15:
     mc "WHAT?!"
 
     ov "NO OBJECTIONS!"
+
+    $ play_jump()
+    show overseer at jumpscare_transform onlayer master with Dissolve(0.2)
+    pause 0.5
+    hide overseer with Dissolve(0.2)
 
     n "THE END"
     

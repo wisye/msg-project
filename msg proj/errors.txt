@@ -2,13 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 1264: expected 'simple_expression' not found.
-    show expression jump at jumpscare_transform with Dissolve(0.2)
-                    ^
-
-File "game/script.rpy", line 1266: expected 'simple_expression' not found.
-    hide expression jump with Dissolve(0.2)
-                    ^
+File "game/script.rpy", line 81: invalid syntax
+    define mc = Character(mc_name, color="#ffffff")
+            ^
 
 Ren'Py Version: Ren'Py 8.1.3.23091805
-Tue Feb  6 17:50:02 2024
+Thu Feb  8 19:51:42 2024
